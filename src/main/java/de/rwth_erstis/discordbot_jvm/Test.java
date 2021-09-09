@@ -1,4 +1,4 @@
-package de.rwth_erstis.discrdbot_jvm;
+package de.rwth_erstis.discordbot_jvm;
 
 public class Test {
     public int test(){

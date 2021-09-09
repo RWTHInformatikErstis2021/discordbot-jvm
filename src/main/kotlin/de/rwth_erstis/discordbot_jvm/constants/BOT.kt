@@ -1,4 +1,4 @@
-package de.rwth_erstis.discrdbot_jvm.constants
+package de.rwth_erstis.discordbot_jvm.constants
 
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity

@@ -1,9 +1,9 @@
-package de.rwth_erstis.discrdbot_jvm
+package de.rwth_erstis.discordbot_jvm
 
-import de.rwth_erstis.discrdbot_jvm.Test
+import de.rwth_erstis.discordbot_jvm.Test
 import io.github.cdimascio.dotenv.dotenv
 import kotlin.system.exitProcess
-import de.rwth_erstis.discrdbot_jvm.core.BotImpl as Bot
+import de.rwth_erstis.discordbot_jvm.core.BotImpl as Bot
 
 
 fun main(args: Array<String>) {
