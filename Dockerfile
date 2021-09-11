@@ -3,7 +3,7 @@ COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle shadowJar --no-daemon
 
-FROM openjdk:16-jre-slim
+FROM openjdk:11-jre-slim
 
 RUN mkdir /app
 
