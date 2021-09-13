@@ -16,15 +16,12 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class CommandHandler extends ListenerAdapter {
-    private static CommandHandler instance;
     private final Bot bot;
     private final HashMap<String, Command> commands = new HashMap<>();
     private Guild server;
 
     public CommandHandler(Bot bot) {
         this.bot = bot;
-        if (instance == null)
-            instance = this;
         bot.getJda().addEventListener(this);
         String serverID = BOT.INSTANCE.getSERVER_ID();
         try {
@@ -36,10 +33,6 @@ public class CommandHandler extends ListenerAdapter {
             server = bot.getJda().getGuildById(serverID);
     }
 
-    public static CommandHandler getInstance() {
-        return instance;
-    }
-
     public void registerCommand(Command command) {
         commands.put(command.getName(), command);
         for (String alias : command.getAliases()) {
@@ -48,6 +41,7 @@ public class CommandHandler extends ListenerAdapter {
         CommandData data = command.getCommandData();
         if (data != null)
             registerSlashCommand(data);
+        command.setCmdHandler(this);
     }
 
     @Override

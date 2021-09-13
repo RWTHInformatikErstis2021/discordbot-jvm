@@ -13,7 +13,7 @@ public class Help extends Command {
 
     @Override
     public void run(CommandEvent event) {
-        Collection<Command> commands = CommandHandler.getInstance().getCommands();
+        Collection<Command> commands = getCmdHandler().getCommands();
         EmbedBuilder embedBuilder = newBuilder();
         embedBuilder.setTitle("Help for commands", "https://youtu.be/watch?v=dQw4w9WgXcQ");
         for (Command command : commands) {

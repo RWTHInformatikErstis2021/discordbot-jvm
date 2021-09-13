@@ -1,5 +1,6 @@
 package de.rwth_erstis.discordbot_jvm.commands;
 
+import de.rwth_erstis.discordbot_jvm.CommandHandler;
 import de.rwth_erstis.discordbot_jvm.events.CommandEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
@@ -9,6 +10,7 @@ import java.awt.*;
 public abstract class Command {
     private final String name, description;
     private final String[] aliases;
+    private CommandHandler cmdHandler;
 
     public Command(String name, String description, String... aliases) {
         this.name = name;
@@ -38,5 +40,13 @@ public abstract class Command {
 
     public String[] getAliases() {
         return aliases;
+    }
+
+    public CommandHandler getCmdHandler() {
+        return cmdHandler;
+    }
+
+    public void setCmdHandler(CommandHandler handler) {
+        this.cmdHandler = handler;
     }
 }
