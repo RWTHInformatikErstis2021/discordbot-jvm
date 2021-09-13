@@ -1,6 +1,7 @@
 package de.rwth_erstis.discordbot_jvm;
 
 import de.rwth_erstis.discordbot_jvm.commands.Command;
+import de.rwth_erstis.discordbot_jvm.commands.Help;
 import de.rwth_erstis.discordbot_jvm.constants.BOT;
 import de.rwth_erstis.discordbot_jvm.core.Bot;
 import de.rwth_erstis.discordbot_jvm.events.MessageCommandEvent;
@@ -31,9 +32,15 @@ public class CommandHandler extends ListenerAdapter {
         }
         if (serverID != null)
             server = bot.getJda().getGuildById(serverID);
+
+        this.registerKnowCommands();
     }
 
-    public void registerCommand(Command command) {
+    public void registerKnowCommands() {
+        this.registerCommand(new Help(bot));
+    }
+
+    private void registerCommand(Command command) {
         commands.put(command.getName(), command);
         for (String alias : command.getAliases()) {
             commands.put(alias, command);
@@ -41,7 +48,6 @@ public class CommandHandler extends ListenerAdapter {
         CommandData data = command.getCommandData();
         if (data != null)
             registerSlashCommand(data);
-        command.setCmdHandler(this);
     }
 
     @Override
