@@ -65,9 +65,16 @@ application {
     @Suppress("DEPRECATION")
     mainClassName = application.mainClass.get()
 }
+
+compileJava {
+    sourceCompatibility = jvmVersion
+    targetCompatibility = jvmVersion
+}
+
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = jvmVersion
 }
+
 
 tasks.withType<Jar> {
     manifest {
