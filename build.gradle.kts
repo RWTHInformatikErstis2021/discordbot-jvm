@@ -63,17 +63,15 @@ sourceSets {
 
 application {
     mainClass.set("de.rwth_erstis.discordbot_jvm.LauncherKt")
-    @Suppress("DEPRECATION")
-    mainClassName = application.mainClass.get()
 }
 
 tasks.compileJava {
     options.release.set(jvmVersion)
 }
+
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = jvmVersion.toString()
 }
-
 
 tasks.withType<Jar> {
     manifest {
