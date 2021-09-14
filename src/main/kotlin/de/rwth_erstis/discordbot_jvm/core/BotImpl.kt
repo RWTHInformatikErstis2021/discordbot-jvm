@@ -1,5 +1,6 @@
 package de.rwth_erstis.discordbot_jvm.core
 
+import de.rwth_erstis.discordbot_jvm.CommandHandler
 import de.rwth_erstis.discordbot_jvm.constants.BOT.ACTIVITY
 import de.rwth_erstis.discordbot_jvm.constants.BOT.GATEWAY_INTENTS
 import de.rwth_erstis.discordbot_jvm.constants.BOT.STATUS
@@ -15,4 +16,6 @@ internal class BotImpl(token: String) : Bot {
         .setActivity(ACTIVITY)
         .setStatus(STATUS)
         .build()
+
+    override val cmdHandler: CommandHandler = CommandHandler(this)
 }
