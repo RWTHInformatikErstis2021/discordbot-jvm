@@ -3,6 +3,7 @@ package de.rwth_erstis.discordbot_jvm;
 import de.rwth_erstis.discordbot_jvm.commands.Command;
 import de.rwth_erstis.discordbot_jvm.commands.Help;
 import de.rwth_erstis.discordbot_jvm.constants.BOT;
+import de.rwth_erstis.discordbot_jvm.constants.DOTENV;
 import de.rwth_erstis.discordbot_jvm.core.Bot;
 import de.rwth_erstis.discordbot_jvm.events.MessageCommandEvent;
 import de.rwth_erstis.discordbot_jvm.events.SlashCommandCommandEvent;
@@ -24,7 +25,7 @@ public class CommandHandler extends ListenerAdapter {
     public CommandHandler(Bot bot) {
         this.bot = bot;
         bot.getJda().addEventListener(this);
-        String serverID = BOT.INSTANCE.getSERVER_ID();
+        String serverID = DOTENV.SERVER_ID.getValue();
         try {
             bot.getJda().awaitReady();
         } catch (InterruptedException e) {
