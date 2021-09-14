@@ -1,6 +1,6 @@
 plugins {
     application
-    kotlin("jvm") version("1.5.30")
+    kotlin("jvm") version ("1.5.30")
     id("com.github.johnrengelman.shadow") version ("7.0.0")
 }
 
@@ -15,13 +15,14 @@ repositories {
 }
 
 val kotlinTestVersion = "3.4.2"
+val kotlinVersion = "1.5.21"
 val slf4jVersion = "2.0.0-alpha5"
 val jdaVersion = "4.3.0_277"
 val javaDotenvVersion = "5.2.2"
 val junitJupiterVersion = "5.7.2"
 val guavaVersion = "30.1.1-jre"
 
-val jvmVersion = "15"
+val jvmVersion = 15
 
 dependencies {
     testImplementation("org.junit.jupiter", "junit-jupiter", junitJupiterVersion)
@@ -36,7 +37,7 @@ dependencies {
     implementation("io.github.cdimascio", "java-dotenv", javaDotenvVersion)
 
     //Kotlin
-    implementation(kotlin("stdlib"))
+    implementation("org.jetbrains.kotlin", "kotlin-stdlib", kotlinVersion)
 
     //Tests
     //testCompile("io.kotlintest", "kotlintest-runner-junit5", kotlinTestVersion)
@@ -66,13 +67,11 @@ application {
     mainClassName = application.mainClass.get()
 }
 
-compileJava {
-    sourceCompatibility = jvmVersion
-    targetCompatibility = jvmVersion
+tasks.compileJava {
+    options.release.set(jvmVersion)
 }
-
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = jvmVersion
+    kotlinOptions.jvmTarget = jvmVersion.toString()
 }
 
 
