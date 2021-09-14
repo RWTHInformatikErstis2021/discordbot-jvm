@@ -1,5 +1,6 @@
 plugins {
     application
+    java
     kotlin("jvm") version ("1.5.30")
     id("com.github.johnrengelman.shadow") version ("7.0.0")
 }
@@ -50,14 +51,18 @@ tasks.test {
     useJUnitPlatform()
 }
 
-sourceSets {
-    main {
-        java {
-            setSrcDirs(listOf("src/main/java", "src/main/kotlin"))
-        }
-        resources {
-            setSrcDirs(listOf("src/main/resources"))
-        }
+java {
+    sourceSets["main"].apply {
+        java.srcDir("src/main/java")
+    }
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(jvmVersion))
+    }
+}
+
+kotlin {
+    sourceSets["main"].apply {
+        kotlin.srcDir("src/main/myKotlin")
     }
 }
 
@@ -65,12 +70,10 @@ application {
     mainClass.set("de.rwth_erstis.discordbot_jvm.LauncherKt")
 }
 
-tasks.compileJava {
-    options.release.set(jvmVersion)
-}
-
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = jvmVersion.toString()
+    kotlinOptions {
+        jvmTarget = jvmVersion.toString()
+    }
 }
 
 tasks.withType<Jar> {
