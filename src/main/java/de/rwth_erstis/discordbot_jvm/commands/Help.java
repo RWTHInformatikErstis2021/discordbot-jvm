@@ -8,6 +8,7 @@ import java.util.Collection;
 
 public class Help extends Command {
     private final Bot bot;
+
     public Help(Bot bot) {
         super("help", "gives help");
         this.bot = bot;
