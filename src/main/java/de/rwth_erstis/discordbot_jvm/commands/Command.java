@@ -19,7 +19,7 @@ public abstract class Command {
     public abstract void run(CommandEvent event);
 
     public CommandData getCommandData() {
-        return new CommandData(getName(), getDescription());
+        return new CommandData(getName().toLowerCase(), getDescription());
     }
 
     protected EmbedBuilder newBuilder() {//allows to configure default values for embeds like color

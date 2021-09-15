@@ -46,9 +46,10 @@ public class CommandHandler extends ListenerAdapter {
     }
 
     private void registerCommand(Command command) {
-        commands.put(command.getName(), command);
+        commands.put(command.getName().toLowerCase(), command);
+        allCommands.add(command);
         for (String alias : command.getAliases()) {
-            commands.put(alias, command);
+            commands.put(alias.toLowerCase(), command);
         }
         CommandData data = command.getCommandData();
         if (data != null)
@@ -84,7 +85,7 @@ public class CommandHandler extends ListenerAdapter {
     }
 
     public Command getCommand(String name) {
-        return commands.get(name);
+        return commands.get(name.toLowerCase());
     }
 
     public Collection<Command> getCommands() {
