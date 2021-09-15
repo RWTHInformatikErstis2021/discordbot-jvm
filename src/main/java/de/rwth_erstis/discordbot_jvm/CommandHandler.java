@@ -16,12 +16,14 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
 public class CommandHandler extends ListenerAdapter {
     private final Bot bot;
     private final HashMap<String, Command> commands = new HashMap<>();
+    private final ArrayList<Command> allCommands = new ArrayList<>();
     private Guild server;
 
     public CommandHandler(Bot bot) {
@@ -89,7 +91,7 @@ public class CommandHandler extends ListenerAdapter {
     }
 
     public Collection<Command> getCommands() {
-        return commands.values();
+        return allCommands;
     }
 
     public Guild getServer() {
