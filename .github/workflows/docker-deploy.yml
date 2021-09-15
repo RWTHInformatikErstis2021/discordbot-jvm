@@ -12,16 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: Build the Docker image
-     - run: echo "build"
+       run: echo "build"
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
      - name: Test via Junit 
-     - run: echo "test"
+       run: echo "test"
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
      - name: Deploys the Docker image
-     - run: echo "deploy"
+       run: echo "deploy"
