@@ -1,7 +1,9 @@
 package de.rwth_erstis.discordbot_jvm;
 
+import de.rwth_erstis.discordbot_jvm.commands.ChuckNorrisJokeCommand;
 import de.rwth_erstis.discordbot_jvm.commands.Command;
 import de.rwth_erstis.discordbot_jvm.commands.Help;
+import de.rwth_erstis.discordbot_jvm.commands.TrumpQuoteCommand;
 import de.rwth_erstis.discordbot_jvm.constants.BOT;
 import de.rwth_erstis.discordbot_jvm.constants.DOTENV;
 import de.rwth_erstis.discordbot_jvm.core.Bot;
@@ -14,12 +16,14 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
 public class CommandHandler extends ListenerAdapter {
     private final Bot bot;
     private final HashMap<String, Command> commands = new HashMap<>();
+    private final ArrayList<Command> allCommands = new ArrayList<>();
     private Guild server;
 
     public CommandHandler(Bot bot) {
@@ -39,12 +43,15 @@ public class CommandHandler extends ListenerAdapter {
 
     public void registerKnowCommands() {
         this.registerCommand(new Help(bot));
+        registerCommand(new ChuckNorrisJokeCommand());
+        registerCommand(new TrumpQuoteCommand());
     }
 
     private void registerCommand(Command command) {
-        commands.put(command.getName(), command);
+        commands.put(command.getName().toLowerCase(), command);
+        allCommands.add(command);
         for (String alias : command.getAliases()) {
-            commands.put(alias, command);
+            commands.put(alias.toLowerCase(), command);
         }
         CommandData data = command.getCommandData();
         if (data != null)
@@ -80,11 +87,11 @@ public class CommandHandler extends ListenerAdapter {
     }
 
     public Command getCommand(String name) {
-        return commands.get(name);
+        return commands.get(name.toLowerCase());
     }
 
     public Collection<Command> getCommands() {
-        return commands.values();
+        return allCommands;
     }
 
     public Guild getServer() {
