@@ -21,6 +21,7 @@ val jdaVersion = "4.3.0_277"
 val javaDotenvVersion = "5.2.2"
 val junitJupiterVersion = "5.7.2"
 val guavaVersion = "30.1.1-jre"
+val gsonVersion = "2.8.8"
 
 val jvmVersion = 15
 
@@ -38,6 +39,9 @@ dependencies {
 
     //Kotlin
     implementation("org.jetbrains.kotlin", "kotlin-stdlib", kotlinVersion)
+
+    //Gson
+    implementation("com.google.code.gson", "gson", gsonVersion)
 
     //SLF4J
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/
