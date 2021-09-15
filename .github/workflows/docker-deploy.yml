@@ -1,3 +1,4 @@
+name: Docker Deploy CI
 # Trigger the workflow on release activity
 on:
   release:
@@ -8,10 +9,16 @@ on:
       - master
 jobs:
   build:
-    name: Docker image build
+    runs-on: ubuntu-latest
+    steps:
+     - name: Build the Docker image
   test:
     needs: build
-    name: Testing
+    runs-on: ubuntu-latest
+    steps:
+     - name: Test via Junit
   deploy:
     needs: test
-    name: Docker image deploy
+    runs-on: ubuntu-latest
+    steps:
+     - name: Deploys the Docker image
