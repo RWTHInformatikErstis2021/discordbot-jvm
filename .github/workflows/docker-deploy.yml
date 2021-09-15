@@ -1,0 +1,17 @@
+# Trigger the workflow on release activity
+on:
+  release:
+    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
+    types: [published, created, edited]
+    branches:    
+      # Push events on main branch
+      - master
+jobs:
+  build:
+    name: Docker image build
+  test:
+    needs: build
+    name: Testing
+  deploy:
+    needs: test
+    name: Docker image deploy
