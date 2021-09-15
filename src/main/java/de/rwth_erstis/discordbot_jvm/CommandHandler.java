@@ -1,7 +1,9 @@
 package de.rwth_erstis.discordbot_jvm;
 
+import de.rwth_erstis.discordbot_jvm.commands.ChuckNorrisJokeCommand;
 import de.rwth_erstis.discordbot_jvm.commands.Command;
 import de.rwth_erstis.discordbot_jvm.commands.Help;
+import de.rwth_erstis.discordbot_jvm.commands.TrumpQuoteCommand;
 import de.rwth_erstis.discordbot_jvm.constants.BOT;
 import de.rwth_erstis.discordbot_jvm.constants.DOTENV;
 import de.rwth_erstis.discordbot_jvm.core.Bot;
@@ -39,6 +41,8 @@ public class CommandHandler extends ListenerAdapter {
 
     public void registerKnowCommands() {
         this.registerCommand(new Help(bot));
+        registerCommand(new ChuckNorrisJokeCommand());
+        registerCommand(new TrumpQuoteCommand());
     }
 
     private void registerCommand(Command command) {
