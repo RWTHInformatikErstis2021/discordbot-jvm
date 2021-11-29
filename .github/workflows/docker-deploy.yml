@@ -1,6 +1,7 @@
 name: Docker Deploy CI
 # Trigger the workflow on release activity
 on:
+  push:
   release:
     # Only use the types keyword to narrow down the activity types that will trigger your workflow.
     types: [published, created, edited]
@@ -20,3 +21,4 @@ jobs:
           deployment_mode: docker-swarm
           copy_stack_file: true
           stack_file_name: docker-compose.yaml
+          args:
