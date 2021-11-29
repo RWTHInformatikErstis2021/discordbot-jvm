@@ -21,4 +21,4 @@ jobs:
           deployment_mode: docker-swarm
           copy_stack_file: true
           stack_file_name: docker-compose.yaml
-          input_args: up -d
+          args: up -d
